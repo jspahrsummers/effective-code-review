@@ -129,21 +129,33 @@ theme: Ostrich, 1
 1. [Design](#design)
 1. [Behavior](#behavior)
 
+^ I approach code reviewing in stages, "outside-in."
+
+^ By starting at the highest level, I can short-circuit my review if I reveal anything that might necessitate a major change to the pull request. There's little point in reviewing each line of code if the architecture is all wrong!
+
 ---
 
 # _**1.** Intent_
 <a name="intent" />
+
+^ Let's start with the _intention_ behind the change, and make sure we agree on what we want this PR to actually accomplish.
 
 ---
 
 # [fit] What is the **goal**?
 ## _Is the explanation clear?_
 
+^ **Every single pull request summary** should explain the goal of the PR. Otherwise, how will you as a reviewer know whether it's acceptable?
+
+^ The author of a pull request will almost always have the _most_ context on the problem, so it's also important that they can explain it clearly. If the explanation doesn't make sense to you as a reviewer, request changes!
+
 ---
 
 ![](assets/pr-jest-haste-map.png)
 
 [.hide-footer]
+
+^ Here's a clear and informative pull request summary from the Jest project (testing for JavaScript), from [Christoph Nakazawa](https://cpojer.net).
 
 ^ https://github.com/facebook/jest/pull/896
 
@@ -153,6 +165,8 @@ theme: Ostrich, 1
 
 [.hide-footer]
 
+^ The very first sentence gives you the goal right away—to introduce "a new haste map implementation … which is much more scalable than node-haste." There's some assumed context here, but in this case, it refers to something all of the reviewers will be familiar with.
+
 ^ https://github.com/facebook/jest/pull/896
 
 ---
@@ -160,6 +174,12 @@ theme: Ostrich, 1
 ![](assets/pr-jest-haste-map-rationale.png)
 
 [.hide-footer]
+
+^ Then, the summary elaborates on why that goal is important. The existing implementation "isn't well designed and not scalable." "This implementation is attempting to [reduce] startup time."
+
+^ Boom. Reviewers now have enough information to evaluate:
+1. Whether the goal is worth achieving (i.e., if this is the right problem to solve)
+2. If so, whether this particular PR achieves it
 
 ^ https://github.com/facebook/jest/pull/896
 
