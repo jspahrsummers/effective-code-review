@@ -6,6 +6,8 @@ theme: Ostrich, 1
 # **Effective**
 # [fit] Code Review
 
+^ Code review is a key part of the software engineering process. I'm going to be talking to you today about making code reviews as effective as possible.
+
 ---
 
 # [fit] [Justin Spahr-Summers](https://jspahrsummers.com)
@@ -15,6 +17,8 @@ theme: Ostrich, 1
 
 [.hide-footer]
 
+^ Let me introduce myself. My name is Justin Spahr-Summers, a.k.a., [@jspahrsummers](https://jspahrsummers.com) on basically every platform.
+
 ---
 
 ![inline](assets/logo-facebook.png) ![inline](assets/logo-github.png)
@@ -23,7 +27,9 @@ theme: Ostrich, 1
 
 [.hide-footer]
 
-^ Lifetime total: thousands of code reviews (tens of thousands?)
+^ I've worked at smaller companies and larger ones, and been a key contributor to several successful open source projects in the Cocoa community, including Carthage, ReactiveCocoa, the Squirrel update framework, and the Mantle model framework for Objective-C.
+
+^ In total, I've done thousands of code reviews—possibly even _tens_ of thousands—in both commercial and open source contexts.
 
 ---
 
@@ -31,6 +37,8 @@ theme: Ostrich, 1
 # [fit] into **software engineering**
 
 ^ Why this talk?
+
+^ Code review is _fundamental_ to our discipline. Without code review (and without other key fundamentals like testing, or CS theory), we're just _programming_—not engineering. We elevate our craft, and hold each other to a higher standard, through peer reviews.
 
 ---
 
@@ -40,7 +48,9 @@ theme: Ostrich, 1
 - Waste everyone's time in the future
 - Provide a false sense of security
 
-^ Doesn't prevent technical debt, bugs, etc. Will pay for it later, so what's the point?
+^ Many (I daresay _most_) teams are already doing some kind of code review. But if it's not _effective_, what's the point?
+
+^ If your reviews aren't preventing technical debt, aren't improving the end result, and don't provoke good conversation… it's just burning everyone's time for little benefit.
 
 ---
 
@@ -51,10 +61,18 @@ theme: Ostrich, 1
 - Share domain knowledge
 - Provide teaching opportunities
 
+^ Submitting a pull request should be the _start_ of a conversation, not the end of one. Use code reviews to achieve all of these goals, and really dig deep into the essence of what you're trying to achieve. The result will benefit everyone!
+
+^ I intentionally do not say that "great reviews prevent bugs." I think bugs should be _primarily_ prevented through type systems, tests, etc., and not rely upon humans to catch before merging. But of course, some reviews will indeed catch some number of bugs.
+
 ---
 
 # First
 # [fit] principles
+
+^ Before deciding on or describing any process, I like to identify the first principles. Process should follow principles, not the other way around.
+
+^ For code review, these are…
 
 ---
 
@@ -63,31 +81,45 @@ theme: Ostrich, 1
 ## writing **good code**
 ## [fit] *if we were to write the best version of this, what would it be?*
 
----
+^ A great code reviewer is a great engineer, because being able to dig in and understanding someone else's code, as well as how to _improve_ it, are required all the time in writing code too!
 
-# [fit] Critique the **code**
-## *(not the person)*
+^ Note that it doesn't work the other way—not all great engineers are automatically great reviewers! It's an additional skill, and requires commitment to become good at.
 
 ---
 
 # [fit] **Unblock** others
 ## [fit] _Increase your team's productivity_
 
-^ One of the most impactful things you can do is unblock your colleagues. PRs sitting open, unreviewed means lower productivity for everyone.
+^ One of the most impactful things you can do is unblock your colleagues. PRs sitting open and unreviewed = lower productivity for everyone.
 
-^ I recommend establishing a maximum turnaround time for code reviews (e.g., 24 hours during the working week)
+^ I recommend establishing a maximum turnaround time for code reviews (e.g., 24 hours during the working week). If you're having trouble context switching, or bouncing back and forth between reviews and your own coding, establish a few recurring review times as a habit—like before starting your day, after lunch, at the end of your day
 
-^ If you're having trouble context switching, or bouncing back and forth between reviews and your own coding, establish a few recurring review times as a habit—like before starting your day, after lunch, at the end of your day
+---
+
+# [fit] Critique the **code**
+## *(not the person)*
+
+^ You may have heard the expression, "you are not your code." I prefer this reversal of it.
+
+^ The code that someone submits should not reflect upon them _as a person_. Code reviews should never make it personal. It should be about the problem we're trying to solve, and whether this particular version of the change is the best way to do it.
 
 ---
 
 # [fit] Don't assume it's **obvious**
 ## [fit] _Code changes and feedback both need explanation_
 
+^ Many, many important things get omitted in communication because someone assumed, "this is obvious, I don't need to say it."
+
+^ **Always** state your assumptions, and overcommunicate. Code authors, explain what you're doing and why! Code reviewers, explain the feedback you give, and why you believe it might help!
+
 ---
+
+^ TODO: Better linking before this slide?
 
 # The
 # [fit] process
+
+^ Okay. Let me share the process that I use—the one I've honed over thousands of code reviews.
 
 ---
 
