@@ -2,6 +2,7 @@ autoscale: true
 footer: *© 2021 Justin Spahr-Summers, [available](https://github.com/jspahrsummers/effective-code-review) under [CC BY 4.0](https://creativecommons.org/licenses/by/4.0/) license*
 build-lists: true
 theme: Ostrich, 1
+slidenumbers: true
 
 # **Effective**
 # [fit] Code Review
@@ -33,8 +34,8 @@ theme: Ostrich, 1
 
 ---
 
-# [fit] Code review puts the **engineering**
-# [fit] into **software engineering**
+# [fit] It's not software **engineering**
+# [fit] without code review
 
 ^ Why this talk?
 
@@ -50,7 +51,7 @@ theme: Ostrich, 1
 
 ^ Many (I daresay _most_) teams are already doing some kind of code review. But if it's not _effective_, what's the point?
 
-^ If your reviews aren't preventing technical debt, aren't improving the end result, and don't provoke good conversation… it's just burning everyone's time for little benefit.
+^ If your reviews aren't preventing technical debt, aren't improving the end result, and don't provoke good conversation… it's just burning everyone's time for little benefit—and your future self will pay the opportunity cost.
 
 ---
 
@@ -114,7 +115,14 @@ theme: Ostrich, 1
 
 ---
 
-^ TODO: Better linking before this slide?
+1. Imagine the best version of the code
+1. Unblock your team
+1. Criticize code, not people
+1. Over-explain everything!
+
+^ (recap)
+
+---
 
 # The
 # [fit] process
@@ -155,9 +163,9 @@ theme: Ostrich, 1
 
 [.hide-footer]
 
-^ Here's a clear and informative pull request summary from the Jest project (testing for JavaScript), from [Christoph Nakazawa](https://cpojer.net).
+^ Here's a clear and informative pull request summary from [Jest](https://jestjs.io) (JavaScript testing framework), from [Christoph Nakazawa](https://cpojer.net).
 
-^ https://github.com/facebook/jest/pull/896
+^ _[facebook/jest#896](https://github.com/facebook/jest/pull/896)_
 
 ---
 
@@ -167,7 +175,7 @@ theme: Ostrich, 1
 
 ^ The very first sentence gives you the goal right away—to introduce "a new haste map implementation … which is much more scalable than node-haste." There's some assumed context here, but in this case, it refers to something all of the reviewers will be familiar with.
 
-^ https://github.com/facebook/jest/pull/896
+^ _[facebook/jest#896](https://github.com/facebook/jest/pull/896)_
 
 ---
 
@@ -177,18 +185,20 @@ theme: Ostrich, 1
 
 ^ Then, the summary elaborates on why that goal is important. The existing implementation "isn't well designed and not scalable." "This implementation is attempting to [reduce] startup time."
 
-^ Boom. Reviewers now have enough information to evaluate:
-1. Whether the goal is worth achieving (i.e., if this is the right problem to solve)
-2. If so, whether this particular PR achieves it
+^ Boom. Reviewers now have enough information to evaluate whether the goal is worth achieving (i.e., if this is the right problem to solve).
 
-^ https://github.com/facebook/jest/pull/896
+^ The next thing to figure out is…
+
+^ _[facebook/jest#896](https://github.com/facebook/jest/pull/896)_
 
 ---
 
 # [fit] Does it **succeed**?
 ## _How do you know?_
 
-^ Is it tested? How will you know if it regresses?
+^ Presuming you, as the reviewer, understand the goal of the PR, your next responsibility is to determine _whether this pull request actually achieves it_.
+
+^ For example, is the bug fix or new feature tested? How will you know if there's a regression? These are the questions you (the reviewer) should have. The author should have satisfying answers for you right there in the PR summary.
 
 ---
 
@@ -196,7 +206,9 @@ theme: Ostrich, 1
 
 [.hide-footer]
 
-^ https://github.com/facebook/jest/pull/4497
+^ Here's another pull request from [Jest](https://jestjs.io), from [Miguel Jiménez Esún](https://twitter.com/mjesun). All we need to know from this excerpt is that this is intended to be a performance improvement.
+
+^ _[facebook/jest#4497](https://github.com/facebook/jest/pull/4497)_
 
 ---
 
@@ -204,7 +216,9 @@ theme: Ostrich, 1
 
 [.hide-footer]
 
-^ https://github.com/facebook/jest/pull/4497
+^ And we have _evidence_ that it succeeds at improving performance, because the PR helpfully includes benchmarking results right in the description—along with the process by which anyone can compile their own benchmarks.
+
+^ _[facebook/jest#4497](https://github.com/facebook/jest/pull/4497)_
 
 ---
 
@@ -212,7 +226,9 @@ theme: Ostrich, 1
 
 [.hide-footer]
 
-^ https://github.com/facebook/jest/pull/4497
+^ This same PR description includes a picture of automated test coverage after the change. We have evidence that despite the performance improvement, no functionality should have regressed. Great!
+
+^ _[facebook/jest#4497](https://github.com/facebook/jest/pull/4497)_
 
 ---
 
@@ -231,7 +247,9 @@ theme: Ostrich, 1
 
 [.hide-footer]
 
-^ https://github.com/desktop/desktop/pull/12000
+^ One more illustration, this time a pull request into [GitHub Desktop](https://desktop.github.com). I like this one because it's adding a new feature to an application, and… what's the best way to demonstrate that that's achieved?
+
+^ _[desktop/desktop#12000](https://github.com/desktop/desktop/pull/12000)_
 
 ---
 
@@ -239,19 +257,27 @@ theme: Ostrich, 1
 
 [.hide-footer]
 
-^ https://github.com/desktop/desktop/pull/12000
+^ A video recording of that feature being used! The author has virtually let the reviewer try the feature themselves, without checking out and building the code from scratch.
+
+^ _[desktop/desktop#12000](https://github.com/desktop/desktop/pull/12000)_
 
 ---
 
-# [fit] Are the changes
-# **appropriate**?
+# [fit] Are the changes & summary
+# **complete**?
 
-^ Do they align with the explanation in the summary? Are major architectural shifts explained? Do other changes depend on this one? Even incomplete PRs should meet a high quality bar.
+^ Finally, evaluate (at a glance) whether the changes you see align with the explanation given in the summary. For example, are major architectural shifts explained?
+
+^ Does this PR depend on something else? Does something else depend on this one? Note that individual changes in a stack should still meet a high quality bar.
 
 ---
 
 # _**2.** Design_
 <a name="design" />
+
+^ This is a good place to pause and reflect. If the intention is not clear, or you disagree with the goal, there's no need to review further.
+
+^ But if you're on board so far, now it's time to review the high-level design of the changes.
 
 ---
 
@@ -259,44 +285,79 @@ theme: Ostrich, 1
 # [fit] How would **you** do it?
 
 ^ Try to think through the bug or feature described, and mentally design your own solution for it.
-^ If you didn't have this PR in front of you, how would you have done it? Does that highlight any gaps in the code you're reviewing?
+
+^ If you didn't have this PR in front of you, how would you have done it? Does that highlight any gaps in the design you're reviewing?
 
 ---
 
 # Review the **architecture**
 ### _(The components and how they relate to one another)_
 
-- Do you understand it well enough to use or extend?
 - Are the architectural choices justified?
+- Do you understand it well enough to use or extend?
 - Would everyone else be happy to maintain this?
+
+^ If the author disappeared tomorrow, would the rest of the team be able to (and _want_ to) work with this?
+
+^ Will this be easy to run in production (whatever that means for your codebase)? Generally, simpler architectures are more maintainable.
 
 ---
 
 # Review the **API**
 ### _(The contract for using each component)_
 
-- Is the API understandable without the PR?
+- Is the API understandable?
 - Does the documentation teach the reader how to use it?
 - Is the API conventional?
+
+^ Put yourself in the shoes of an API user. If you didn't have this PR in front of you, would you understand how to use this API?
+
+^ Remember the principle of "don't assume it's obvious:" what the author finds self-explanatory is often not the case for others!
+
+^ On _convention_: if in Python, is it Pythonic? If inside a freamwork with its own conventions, does it match those?
 
 ---
 
 # Is the design **good**?
+
+^ This is the most subjective part of the whole review, and partly just comes with experience, but here are some heuristics to help you answer this question.
+
+^ Remember these for both coding _and_ reviewing!
 
 ---
 
 # **[YAGNI](https://en.wikipedia.org/wiki/You_aren%27t_gonna_need_it)**
 # [fit] _You aren't gonna need it_
 
+^ "Always implement things when you actually need them, never when you just foresee that you need them."—Ron Jeffries
+
+^ "Do the simplest thing that could possibly work."
+
 ---
 
-# [fit] **[Simple](https://www.infoq.com/presentations/Simple-Made-Easy/)** vs. easy
+### Easy
+### _familiar or approachable_
+### <br />
+### **Simple**
+### **_fewer concepts and concerns_**
+
+^ _Familiar_ patterns may increase the likelihood of mistakes.
+
+^ For example, platforms that try to make concurrency invisible to the developer can end up making things more complex (when bugs inevitably arise), even if it's _easier_ to write the code at first.
+
+^ See Rich Hickey's presentation, [Simple Made Easy](https://www.infoq.com/presentations/Simple-Made-Easy/), as well as my favorite paper, [Out of the Tar Pit](https://blog.acolyer.org/2015/03/20/out-of-the-tar-pit/).
 
 ---
 
 # **[Pit of success](https://blog.codinghorror.com/falling-into-the-pit-of-success/)**
 # [fit] _Make the right things easy_
 # [fit] _& the wrong things possible_
+
+^ Does the API offer sensible defaults? Whenever there are multiple options, does the documentation clearly explain the consequences of each? Is the developer led toward the "right" choice?
+
+^ It should be _hard_ to mess things up! Strong static typing can help a lot here, by preventing logic errors and offering guidance to the user.
+
+^ "Escape hatches" can empower developers if the API is missing something, but it's not a bad thing if they feel Hard or Wrong to use!
 
 ---
 
@@ -321,10 +382,16 @@ _**many specific interfaces** are better than one über-interface_
 - [Dependency inversion principle](https://en.wikipedia.org/wiki/Dependency_inversion_principle)
 _**depend upon abstractions**, not concrete implementations_
 
+^ Classic software engineering principles, still as relevant as ever.
+
 ---
 
 # _**3.** Behavior_
 <a name="design" />
+
+^ Pause again here. If the design has significant flaws that need to be fixed, reviewing the tests and the implementation won't add any value yet.
+
+^ If the design mostly looks good, it's time to look at the implemented behavior.
 
 ---
 
@@ -337,18 +404,30 @@ _**depend upon abstractions**, not concrete implementations_
 - Are there missing tests?
 - You can **request changes**!
 
+^ We'll start from the tests. This is sort of the code review analogue to test-driven development—verify that the tests make sense before checking the implementation.
+
+^ If one of the tests fails, will you know how to investigate and resolve it? Sometimes a simpler test, covering less, is better than a complex test that we cannot hope to debug.
+
+^ Don't wait until later for missing tests—they'll never get added!
+
 ---
 
 # Review the **implementation**
 
 - This is the **least important** part to review!
 - Would you be able to debug this code?
+- Be suspicious of convoluted code
 - [DRY](https://en.wikipedia.org/wiki/Don't_repeat_yourself): Don't repeat yourself
 - Don't reinvent the wheel
 - Don't ignore linters and warnings
-- If it looks convoluted, it's probably wrong
 
 ^ Does the code achieve its goal in the simplest, most maintainable way possible?
+
+^ If it ever feels like we're "swimming upstream," maybe there's a good reason for it! Dig deeper—many things that look convoluted or hard are actually wrong.
+
+^ Remember, correctness isuses should mostly be caught through testing, not human reviewers. If the API contract is sensible and there are tests that validate it, any* implementation fulfilling the contract should be basically OK.
+
+^ _* of course, there are exceptions; e.g., performance requirements, side effects_
 
 ---
 
@@ -358,10 +437,14 @@ _**depend upon abstractions**, not concrete implementations_
 1. [Design](#design)
 1. [Behavior](#behavior)
 
+^ Keep this ordering in mind, so that you can go "outside in." You'll maximize your own efficiency at reviewing changes, and you'll be focusing your feedback on what is _most relevant_ for the PR author.
+
 ---
 
 # Other
 # [fit] ProTips™
+
+^ Outside of the process itself, here are just a couple of things to add.
 
 ---
 
@@ -374,6 +457,12 @@ _**depend upon abstractions**, not concrete implementations_
 - Prioritize your feedback
 - Provide concrete suggestions
 
+^ I've been saying "request changes" a lot. **That does not necessarily mean "you need to change this."** It's really just a signal that the author needs to take some action or provide more information (e.g., respond to a question) before the PR is ready for another review.
+
+^ Likewise, **"accept" does not mean "this is 100% fine."** You can ask the author to make changes before landing, and we should trust each other enough that this will happen.
+
+^ And always remember to **justify your feedback**, just like you expect the PR itself to be justified. Point out how changing _this thing here_ will lead to a better specific result, or end up improving _this other thing over here_.
+
 ---
 
 # **Tell a story** with your commits
@@ -385,6 +474,25 @@ _**depend upon abstractions**, not concrete implementations_
 <br />
 - [Stack](http://bentrengrove.com/blog/2020/7/8/how-to-stack-prs-in-github) dependent changes
 
+^ As a pull request _author_, you can apply all of the advice I've given so far as well! You can make your summaries clear and informative; you can evaluate and improve your design, tests, and implementation just like your reviewers will.
+
+^ Here's one more thing that you, as an author, can do to make your reviewers' lives easier. By breaking down your changes into a logical sequence, they can see the individual parts of the change more clearly, and naturally follow the progression to a complete feature or bug fix.
+
+---
+
+1. Imagine the best version of the code
+1. Unblock your team
+1. Criticize code, not people
+1. Over-explain everything!
+
+<br />
+
+1. [Intent](#intent): goal & summary
+1. [Design](#design): architecture & API
+1. [Behavior](#behavior): tests & implementation
+
+^ (recap)
+
 ---
 
 # _Questions?_
@@ -392,4 +500,4 @@ _**depend upon abstractions**, not concrete implementations_
 **Slides and notes** are available at:
 [github.com/jspahrsummers/effective-code-review](https://github.com/jspahrsummers/effective-code-review)
 
-Thanks to Lightricks and Barak Yoresh for inviting me to speak!
+Thanks to **Lightricks** and **Barak Yoresh** for inviting me to speak!
