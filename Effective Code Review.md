@@ -2,7 +2,6 @@ autoscale: true
 footer: *© 2021 Justin Spahr-Summers, [available](https://github.com/jspahrsummers/effective-code-review) under [CC BY 4.0](https://creativecommons.org/licenses/by/4.0/) license*
 build-lists: true
 theme: Ostrich, 1
-slidenumbers: true
 
 # **Effective**
 # [fit] Code Review
@@ -30,7 +29,7 @@ slidenumbers: true
 
 ^ I've worked at smaller companies and larger ones, and been a key contributor to several successful open source projects in the Cocoa community, including Carthage, ReactiveCocoa, the Squirrel update framework, and the Mantle model framework for Objective-C.
 
-^ In total, I've done thousands of code reviews—possibly even _tens_ of thousands—in both commercial and open source contexts.
+^ In total, I've done thousands of code reviews—possibly _tens_ of thousands—in both commercial and open source contexts.
 
 ---
 
@@ -73,7 +72,7 @@ slidenumbers: true
 
 ^ Before deciding on or describing any process, I like to identify the first principles. Process should follow principles, not the other way around.
 
-^ For code review, these are…
+^ For code review, the following are my principles.
 
 ---
 
@@ -84,7 +83,7 @@ slidenumbers: true
 
 ^ A great code reviewer is a great engineer, because being able to dig in and understanding someone else's code, as well as how to _improve_ it, are required all the time in writing code too!
 
-^ Note that it doesn't work the other way—not all great engineers are automatically great reviewers! It's an additional skill, and requires commitment to become good at.
+^ _(Note that it doesn't work the other way—not all great engineers are automatically great reviewers! It's an additional skill, and requires commitment to become good at.)_
 
 ---
 
@@ -93,16 +92,16 @@ slidenumbers: true
 
 ^ One of the most impactful things you can do is unblock your colleagues. PRs sitting open and unreviewed = lower productivity for everyone.
 
-^ I recommend establishing a maximum turnaround time for code reviews (e.g., 24 hours during the working week). If you're having trouble context switching, or bouncing back and forth between reviews and your own coding, establish a few recurring review times as a habit—like before starting your day, after lunch, at the end of your day
+^ I recommend establishing a maximum turnaround time for code reviews (e.g., 24 hours during the working week). If you're having trouble context switching, or bouncing back and forth between reviews and your own coding, establish a few recurring review times as a habit—like before starting your day, after lunch, and at the end of your day.
 
 ---
 
 # [fit] Critique the **code**
 ## *(not the person)*
 
-^ You may have heard the expression, "you are not your code." I prefer this reversal of it.
+^ You may have heard the expression, "you are not your code." I prefer "_they_ are not their code."
 
-^ The code that someone submits should not reflect upon them _as a person_. Code reviews should never make it personal. It should be about the problem we're trying to solve, and whether this particular version of the change is the best way to do it.
+^ The code that someone submits should not reflect upon them as a person. Code reviews should never make it personal. It should be about the problem we're trying to solve, and whether this particular version of the change is the best way to do it.
 
 ---
 
@@ -141,6 +140,10 @@ slidenumbers: true
 
 ^ By starting at the highest level, I can short-circuit my review if I reveal anything that might necessitate a major change to the pull request. There's little point in reviewing each line of code if the architecture is all wrong!
 
+^ Intent: goal & summary
+Design: architecture & API
+Behavior: tests & implementation
+
 ---
 
 # _**1.** Intent_
@@ -155,7 +158,7 @@ slidenumbers: true
 
 ^ **Every single pull request summary** should explain the goal of the PR. Otherwise, how will you as a reviewer know whether it's acceptable?
 
-^ The author of a pull request will almost always have the _most_ context on the problem, so it's also important that they can explain it clearly. If the explanation doesn't make sense to you as a reviewer, request changes!
+^ The author of a pull request will have the _most_ context on the problem, so it's important that they can explain it clearly. If the explanation doesn't make sense to you as a reviewer, request changes!
 
 ---
 
@@ -163,7 +166,7 @@ slidenumbers: true
 
 [.hide-footer]
 
-^ Here's a clear and informative pull request summary from [Jest](https://jestjs.io) (JavaScript testing framework), from [Christoph Nakazawa](https://cpojer.net).
+^ Here's an informative pull request summary from [Jest](https://jestjs.io) (JavaScript testing framework), from [Christoph Nakazawa](https://cpojer.net). Although it could use a bit of structure (e.g., with headings), it's very clear in its goal if you read on…
 
 ^ _[facebook/jest#896](https://github.com/facebook/jest/pull/896)_
 
@@ -268,7 +271,7 @@ slidenumbers: true
 
 ^ Finally, evaluate (at a glance) whether the changes you see align with the explanation given in the summary. For example, are major architectural shifts explained?
 
-^ Does this PR depend on something else? Does something else depend on this one? Note that individual changes in a stack should still meet a high quality bar.
+^ Does this PR depend on something else? Does something else depend on this one? _Note that individual changes in a stack should still meet a high quality bar._
 
 ---
 
@@ -310,11 +313,11 @@ slidenumbers: true
 - Does the documentation teach the reader how to use it?
 - Is the API conventional?
 
-^ Put yourself in the shoes of an API user. If you didn't have this PR in front of you, would you understand how to use this API?
+^ Put yourself in the shoes of an API consumer. If you didn't have this PR in front of you, would you understand how to use it?
 
 ^ Remember the principle of "don't assume it's obvious:" what the author finds self-explanatory is often not the case for others!
 
-^ On _convention_: if in Python, is it Pythonic? If inside a freamwork with its own conventions, does it match those?
+^ On _convention_: if in Python, is it Pythonic? If inside a framework with its own conventions, does it match those?
 
 ---
 
@@ -372,7 +375,7 @@ _each thing should have **only one responsibility**_
 _**behavior should be extensible** without modifying code_
 
 - [Liskov substitution principle](https://en.wikipedia.org/wiki/Liskov_substitution_principle)
-_**types should be replaceable** with subtypes_
+_**types** should be replaceable with **subtypes**_
 
 [.column]
 
@@ -425,13 +428,13 @@ _**depend upon abstractions**, not concrete implementations_
 
 ^ If it ever feels like we're "swimming upstream," maybe there's a good reason for it! Dig deeper—many things that look convoluted or hard are actually wrong.
 
-^ Remember, correctness isuses should mostly be caught through testing, not human reviewers. If the API contract is sensible and there are tests that validate it, any* implementation fulfilling the contract should be basically OK.
+^ Remember, correctness issues should mostly be caught through testing, not human reviewers. If the API contract is sensible and there are tests that validate it, any* implementation fulfilling the contract should be basically OK.
 
 ^ _* of course, there are exceptions; e.g., performance requirements, side effects_
 
 ---
 
-# _But remember..._
+# _Remember the order..._
 
 1. [Intent](#intent)
 1. [Design](#design)
@@ -480,16 +483,25 @@ _**depend upon abstractions**, not concrete implementations_
 
 ---
 
+[.column]
+
+# _The principles_
+
 1. Imagine the best version of the code
 1. Unblock your team
 1. Criticize code, not people
 1. Over-explain everything!
 
-<br />
+[.column]
 
-1. [Intent](#intent): goal & summary
-1. [Design](#design): architecture & API
-1. [Behavior](#behavior): tests & implementation
+# _The process_
+
+1. [Intent](#intent)
+the goal & summary
+1. [Design](#design)
+the architecture & API
+1. [Behavior](#behavior)
+the tests & implementation
 
 ^ (recap)
 
@@ -497,7 +509,9 @@ _**depend upon abstractions**, not concrete implementations_
 
 # _Questions?_
 
-**Slides and notes** are available at:
+**Slides and notes** available at:
 [github.com/jspahrsummers/effective-code-review](https://github.com/jspahrsummers/effective-code-review)
 
-Thanks to **Lightricks** and **Barak Yoresh** for inviting me to speak!
+Thanks to
+**Lightricks** and **Barak Yoresh**
+for inviting me to speak!
