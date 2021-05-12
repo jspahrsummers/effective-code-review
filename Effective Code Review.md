@@ -513,5 +513,5 @@ the tests & implementation
 [github.com/jspahrsummers/effective-code-review](https://github.com/jspahrsummers/effective-code-review)
 
 Thanks to
-**Lightricks** and **Barak Yoresh**
+[**Lightricks**](https://www.lightricks.com) and **Barak Yoresh**
 for inviting me to speak!
