@@ -16,3 +16,5 @@ Screenshots and videos are included from the following pull requests. Consult th
 * [facebook/jest#896](https://github.com/facebook/jest/pull/896)
 * [facebook/jest#4497](https://github.com/facebook/jest/pull/4497)
 * [desktop/desktop#12000](https://github.com/desktop/desktop/pull/12000)
+
+Presentation rendered using [Deckset](https://www.deckset.com).
