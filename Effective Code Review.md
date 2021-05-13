@@ -1,5 +1,4 @@
 autoscale: true
-footer: *© 2021 Justin Spahr-Summers, [available](https://github.com/jspahrsummers/effective-code-review) under [CC BY 4.0](https://creativecommons.org/licenses/by/4.0/) license*
 build-lists: true
 theme: Ostrich, 1
 
@@ -15,8 +14,6 @@ theme: Ostrich, 1
 
 ![right](assets/me.jpg)
 
-[.hide-footer]
-
 ^ Let me introduce myself. My name is Justin Spahr-Summers, a.k.a., [@jspahrsummers](https://jspahrsummers.com) on basically every platform.
 
 ---
@@ -24,8 +21,6 @@ theme: Ostrich, 1
 ![inline](assets/logo-facebook.png) ![inline](assets/logo-github.png)
 
 ![inline](assets/logo-carthage.png) ![inline](assets/logo-reactivecocoa.png) ![inline](assets/logo-squirrel.png) ![inline](assets/logo-mantle.png)
-
-[.hide-footer]
 
 ^ I've worked at smaller companies and larger ones, and been a key contributor to several successful open source projects in the Cocoa community, including Carthage, ReactiveCocoa, the Squirrel update framework, and the Mantle model framework for Objective-C.
 
@@ -164,8 +159,6 @@ Behavior: tests & implementation
 
 ![](assets/pr-jest-haste-map.png)
 
-[.hide-footer]
-
 ^ Here's an informative pull request summary from [Jest](https://jestjs.io) (JavaScript testing framework), from [Christoph Nakazawa](https://cpojer.net). Although it could use a bit of structure (e.g., with headings), it's very clear in its goal if you read on…
 
 ^ _[facebook/jest#896](https://github.com/facebook/jest/pull/896)_
@@ -174,8 +167,6 @@ Behavior: tests & implementation
 
 ![](assets/pr-jest-haste-map-introduction.png)
 
-[.hide-footer]
-
 ^ The very first sentence gives you the goal right away—to introduce "a new haste map implementation … which is much more scalable than node-haste." There's some assumed context here, but in this case, it refers to something all of the reviewers will be familiar with.
 
 ^ _[facebook/jest#896](https://github.com/facebook/jest/pull/896)_
@@ -183,8 +174,6 @@ Behavior: tests & implementation
 ---
 
 ![](assets/pr-jest-haste-map-rationale.png)
-
-[.hide-footer]
 
 ^ Then, the summary elaborates on why that goal is important. The existing implementation "isn't well designed and not scalable." "This implementation is attempting to [reduce] startup time."
 
@@ -207,8 +196,6 @@ Behavior: tests & implementation
 
 ![](assets/pr-jest-worker.png)
 
-[.hide-footer]
-
 ^ Here's another pull request from [Jest](https://jestjs.io), from [Miguel Jiménez Esún](https://twitter.com/mjesun). All we need to know from this excerpt is that this is intended to be a performance improvement.
 
 ^ _[facebook/jest#4497](https://github.com/facebook/jest/pull/4497)_
@@ -217,8 +204,6 @@ Behavior: tests & implementation
 
 ![fit](assets/pr-jest-worker-performance-test.png)
 
-[.hide-footer]
-
 ^ And we have _evidence_ that it succeeds at improving performance, because the PR helpfully includes benchmarking results right in the description—along with the process by which anyone can compile their own benchmarks.
 
 ^ _[facebook/jest#4497](https://github.com/facebook/jest/pull/4497)_
@@ -226,8 +211,6 @@ Behavior: tests & implementation
 ---
 
 ![fit](assets/pr-jest-worker-coverage.png)
-
-[.hide-footer]
 
 ^ This same PR description includes a picture of automated test coverage after the change. We have evidence that despite the performance improvement, no functionality should have regressed. Great!
 
@@ -248,8 +231,6 @@ Behavior: tests & implementation
 
 ![](assets/pr-desktop-create-alias.png)
 
-[.hide-footer]
-
 ^ One more illustration, this time a pull request into [GitHub Desktop](https://desktop.github.com). I like this one because it's adding a new feature to an application, and… what's the best way to demonstrate that that's achieved?
 
 ^ _[desktop/desktop#12000](https://github.com/desktop/desktop/pull/12000)_
@@ -257,8 +238,6 @@ Behavior: tests & implementation
 ---
 
 ![fit autoplay loop mute](assets/pr-desktop-create-alias-recording.mov)
-
-[.hide-footer]
 
 ^ A video recording of that feature being used! The author has virtually let the reviewer try the feature themselves, without checking out and building the code from scratch.
 
