@@ -540,6 +540,7 @@ Tests & implementation
 Thanks to
 [**Lightricks**](https://www.lightricks.com) and **Barak Yoresh**
 for inviting me to speak, and to
-[Christoph Nakazawa](https://cpojer.net/) for sending me [some great example PRs](https://twitter.com/cpojer/status/1389375377005453313)!
+[Christoph Nakazawa](https://cpojer.net/)
+for sending me [some great example PRs](https://twitter.com/cpojer/status/1389375377005453313)!
 
 ^ Thank you all! I'm happy to take questions on anything and everything.
